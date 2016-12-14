@@ -12,11 +12,12 @@ services:
       - docker_elk
   logstash:
     build: logstash/
-    command: -f /etc/logstash/conf.d/
+    command: -f /etc/logstash/conf.d/ --config.reload.automatic
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
     ports:
       - "5000:5000"
+      - "5001:5001"
     networks:
       - docker_elk
     depends_on:
